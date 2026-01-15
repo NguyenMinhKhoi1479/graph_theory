@@ -44,7 +44,7 @@ void add_edge(Graph *g, int u, int v)
     // increase number of edges
     g->m++;
 }
-
+//u ke v neu co cung (u,v) (co huong thi u ke ve neu co cung u->v v khong ke u)
 int adjacent(Graph *g, int u, int v)
 {
     if (u < 1 || u > g->n)

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "List.c"
+#include "Queue.c"
 #define MAX_M 500
 // undirected graph (adjacency matrix)
 typedef struct{
@@ -43,16 +44,35 @@ List node_neighbor(Graph *g, int u){
     return l;
 }
 
-void dfs(Graph* g, int u, int used[MAX_M]){
-    if(used[u] == 1) return;
-    printf("%d ",u);
-    used[u] = 1;
-    List neighbor = node_neighbor(g,u);
-    for(int i = 0 ; i < neighbor.length ; i++){
-        
-        int v = neighbor.data[i];
-        dfs(g,v,used);
+void add_list_to_queue(Queue *q, List l){
+    for(int i = 0 ; i < l.length ; i++){
+        Enqueue(q,l.data[i]);
     }
+}
+
+void bfs(Graph *g,int u){
+    //init used array
+    int used[g->n+1];
+    for(int i = 1 ; i <= g->n ; i++){
+        used[i]=0;
+    }
+    //init Queue
+    Queue q;
+    init_queue(&q);
+    List node = node_neighbor(g,u);
+    add_list_to_queue(&q,node);
+    used[u] = 1;
+    printf("%d ",u);
+    while(!isNullQueue(q)){
+        int next = Dequeue(&q);
+        if(used[next] != 1){
+            printf("%d ",next);
+            List node = node_neighbor(g,next);
+            add_list_to_queue(&q,node);
+            used[next] = 1;
+        }
+    }
+    printf("\n");
 }
 
 int main(){
@@ -66,10 +86,7 @@ int main(){
         add_edge(&g,u,v);
     }
     print_graph(&g);
-    int used[g.n+1];
-    for(int i = 1 ; i <= g.n ; i++){
-        used[i]=0;
-    }
-    dfs(&g,1,used);
+    
+    bfs(&g,1);
     return 0;
 }

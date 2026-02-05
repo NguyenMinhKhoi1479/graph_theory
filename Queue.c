@@ -1,10 +1,10 @@
 #include <stdio.h>
-#define max_m 500
+#define Queue_Max 500
 #define data_type int
 
 typedef struct{
     int front,rear;
-    data_type data[max_m];
+    data_type data[Queue_Max];
 }Queue;
 
 void init_queue(Queue* q){
@@ -39,20 +39,20 @@ void Print_Queue(Queue q){
     printf("\n");
 }
 
-int main(){
-    Queue q;
-    init_queue(&q);
-    if(isNullQueue(q)) printf("null\n");
-    Enqueue(&q,1);
-    Enqueue(&q,2);
-    Enqueue(&q,3);
-    Enqueue(&q,4);
-    Enqueue(&q,5);
-    Enqueue(&q,6);
-    Print_Queue(q);
-    Dequeue(&q);
-    Dequeue(&q);
-    Dequeue(&q);
-    Print_Queue(q);
-    return 0;
-}
+// int main(){
+//     Queue q;
+//     init_queue(&q);
+//     if(isNullQueue(q)) printf("null\n");
+//     Enqueue(&q,1);
+//     Enqueue(&q,2);
+//     Enqueue(&q,3);
+//     Enqueue(&q,4);
+//     Enqueue(&q,5);
+//     Enqueue(&q,6);
+//     Print_Queue(q);
+//     Dequeue(&q);
+//     Dequeue(&q);
+//     Dequeue(&q);
+//     Print_Queue(q);
+//     return 0;
+// }

@@ -1,9 +1,9 @@
-#define max_m 100
+#define List_Max 100
 #define data_type int
 
 
 typedef struct{
-    data_type data[max_m];
+    data_type data[List_Max];
     int length;
 }List;
 

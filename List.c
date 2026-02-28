@@ -16,6 +16,10 @@ void push_back(List* l, data_type value){
     l->length++;
 }
 
+int is_null_list(List l){
+    return l.length == 0;
+}
+
 void print_list(List l){
     for(int i = 0 ; i < l.length ; i++){
         printf("%d ",l.data[i]);

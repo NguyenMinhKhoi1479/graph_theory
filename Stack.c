@@ -33,20 +33,3 @@ void print_stack(Stack s){
     }
     printf("\n");
 }
-int main(){
-    Stack s;
-    init_Stack(&s);
-    push(&s,1);
-    push(&s,2);
-    push(&s,3);
-    push(&s,4);
-    push(&s,5);
-    push(&s,6);
-    push(&s,7);
-    printf("%d\n",top(s));
-    pop(&s);
-    pop(&s);
-    pop(&s);
-    pop(&s);
-    print_stack(s);
-}

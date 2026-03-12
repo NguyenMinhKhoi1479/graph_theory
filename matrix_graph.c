@@ -16,6 +16,12 @@ void init_graph(Graph *g, int n){
     }
 }
 
+void add_edge(Graph* g, int u, int v){
+    g->A[u][v] = 1;
+    g->A[v][u] = 1;
+    g->m++;
+}
+
 void print_graph(Graph *g){
     for(int i = 1 ; i <= g->n ; i++){
         for(int j = 1 ; j <= g->n ; j++){
@@ -46,23 +52,3 @@ void max_deg(Graph *g){
     printf("%d %d",max_vertex,max);
 }
 
-void add_edge(Graph* g, int u, int v){
-    g->A[u][v] = 1;
-    g->A[v][u] = 1;
-    g->m++;
-}
-
-int main(){
-    int i,n,m,u,v;
-    Graph g;
-    freopen("graph.txt","r",stdin);
-    scanf("%d%d",&n,&m);
-    init_graph(&g, n);
-    for(i = 0 ; i < m ; i++){
-        scanf("%d%d",&u,&v);
-        add_edge(&g,u,v);
-    }
-    print_graph(&g);
-    max_deg(&g);
-    return 0;
-}

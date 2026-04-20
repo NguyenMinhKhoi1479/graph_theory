@@ -49,10 +49,12 @@ int in_deg(Graph *g, int x){
     return count;
 }
 
+int grade[MAX_M];
 void topo_sort(Graph *g, List *l){
     int d[MAX_M];
     for(int i = 1 ; i <= g->n ; i++){
         d[i] = in_deg(g,i);
+        grade[i]=-1;
     }
 
     Queue q;
@@ -61,9 +63,11 @@ void topo_sort(Graph *g, List *l){
     for(int i = 1 ; i <= g->n ; i++){
         if(d[i] == 0){
             Enqueue(&q,i);
+            grade[i] = 0;
         }
     }
 
+    
     while(!isNullQueue(q)){
         //pop phan tu deg_in = 0 sau do dua vao dau list
         int u = Dequeue(&q);
@@ -73,6 +77,7 @@ void topo_sort(Graph *g, List *l){
             if(g->A[u][i] != 0){
                 d[i]--;
                 if(d[i] == 0){
+                    grade[i] = grade[u] + 1;
                     Enqueue(&q,i);
                 }
             }
@@ -90,8 +95,10 @@ int main(){
         scanf("%d%d",&u,&v);
         add_edge(&g,u,v);
     }
-    print_graph(&g);
     List rs;
     topo_sort(&g,&rs);
     print_list(rs);
+        for(int i = 1 ; i <= g.n ; i++){
+            printf("%d\n",grade[i]);
+        }
 }
